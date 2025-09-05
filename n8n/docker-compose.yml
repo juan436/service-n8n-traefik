@@ -5,11 +5,11 @@ services:
     container_name: n8n-app
     environment:
       - DB_TYPE=mysqldb
-      - DB_MYSQL_HOST=192.168.100.10
-      - DB_MYSQL_PORT=3306
-      - DB_MYSQL_USER=n8n_user
-      - DB_MYSQL_PASSWORD=Passwordn8n2025
-      - DB_MYSQL_DATABASE=n8n_db
+      - DB_MYSQLDB_HOST=192.168.100.10
+      - DB_MYSQLDB_PORT=3306
+      - DB_MYSQLDB_USER=n8n_user
+      - DB_MYSQLDB_PASSWORD=Passwordn8n2025
+      - DB_MYSQLDB_DATABASE=n8n_db
 
       - N8N_HOST=contacenter.midoctor24h.com
       - N8N_PROTOCOL=https
@@ -21,6 +21,7 @@ services:
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=Aprender2025
       - N8N_SECURE_COOKIE=true
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       
       # Configuraciones adicionales para webhooks
       - N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN=true
