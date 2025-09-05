@@ -1,4 +1,3 @@
-version: '3'
 services:
   mysql:
     image: mysql:8.0
@@ -8,8 +7,6 @@ services:
       MYSQL_DATABASE: n8n_db
       MYSQL_USER: n8n_user
       MYSQL_PASSWORD: Passwordn8n2025
-    ports:
-      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
