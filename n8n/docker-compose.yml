@@ -13,9 +13,8 @@ services:
 
       - N8N_HOST=contacenter.midoctor24h.com
       - N8N_PROTOCOL=https
-      - N8N_PORT=443
+      - N8N_PORT=5678
       - N8N_WEBHOOK_URL=https://contacenter.midoctor24h.com
-      - WEBHOOK_URL=https://contacenter.midoctor24h.com
       - NODE_ENV=production
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
