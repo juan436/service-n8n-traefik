@@ -1,0 +1,64 @@
+#de la carpeta red_interna
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n-app
+    environment:
+      - DB_TYPE=mysqldb
+      - DB_MYSQL_HOST=mysql
+      - DB_MYSQL_PORT=3306
+      - DB_MYSQL_USER=n8n_user
+      - DB_MYSQL_PASSWORD=Passwordn8n2025
+      - DB_MYSQL_DATABASE=n8n_db
+
+      - N8N_HOST=contacenter.midoctor24h.com
+      - N8N_PROTOCOL=https
+      - N8N_PORT=443
+      - N8N_WEBHOOK_URL=https://contacenter.midoctor24h.com
+      - WEBHOOK_URL=https://contacenter.midoctor24h.com
+      - NODE_ENV=production
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=Aprender2025
+      - N8N_SECURE_COOKIE=true
+      
+      # Configuraciones adicionales para webhooks
+      - N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN=true
+      - N8N_WEBHOOK_TUNNEL_URL=https://contacenter.midoctor24h.com
+      - N8N_DISABLE_PRODUCTION_MAIN_PROCESS=false
+      - N8N_METRICS=false
+      
+      # Configuraciones de red y proxy
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+      - NO_PROXY=localhost,127.0.0.1,mysql
+
+    networks:
+      - db-net
+      - proxy
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+
+      # Router HTTPS
+      - "traefik.http.routers.n8n.rule=Host(`contacenter.midoctor24h.com`)"
+      - "traefik.http.routers.n8n.entrypoints=websecure"
+      - "traefik.http.routers.n8n.tls=true"           
+      - "traefik.http.routers.n8n.tls.certresolver=myresolver"
+
+      # Servicio interno (puerto del contenedor)
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+
+      # Middlewares para webhooks
+      - "traefik.http.middlewares.n8n-secure.headers.customFrameOptionsValue=SAMEORIGIN"
+      - "traefik.http.middlewares.n8n-headers.headers.customRequestHeaders.X-Forwarded-Proto=https"
+      - "traefik.http.middlewares.n8n-headers.headers.customRequestHeaders.X-Forwarded-Port=443"
+      - "traefik.http.routers.n8n.middlewares=n8n-secure,n8n-headers"
+
+networks:
+  db-net:
+    external: true
+  proxy:
+    external: true
+#fin de la carpeta red_intern

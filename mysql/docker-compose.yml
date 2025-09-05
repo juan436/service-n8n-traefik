@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: n8n-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: p4zn5F!FG!RCr@U
+      MYSQL_DATABASE: n8n_db
+      MYSQL_USER: n8n_user
+      MYSQL_PASSWORD: Passwordn8n2025
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      db-net:
+        aliases:
+          - mysql
+
+volumes:
+  mysql_data:
+
+networks:
+  db-net:
+    external: true
