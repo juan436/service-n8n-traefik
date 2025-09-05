@@ -5,7 +5,7 @@ services:
     container_name: n8n-app
     environment:
       - DB_TYPE=mysqldb
-      - DB_MYSQL_HOST=mysql
+      - DB_MYSQL_HOST=192.168.100.10
       - DB_MYSQL_PORT=3306
       - DB_MYSQL_USER=n8n_user
       - DB_MYSQL_PASSWORD=Passwordn8n2025
@@ -34,8 +34,9 @@ services:
       - NO_PROXY=localhost,127.0.0.1,mysql
 
     networks:
-      - db-net
-      - proxy
+      proxy:
+      db-net:
+        ipv4_address: 192.168.100.20
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -59,6 +60,9 @@ services:
 networks:
   db-net:
     external: true
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
   proxy:
     external: true
 #fin de la carpeta red_intern
