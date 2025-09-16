@@ -3,6 +3,8 @@ entryPoints:
     address: ":80"
   websecure:
     address: ":443"
+  mysql-port:
+    address: ":13306"
 
 providers:
   docker:
@@ -10,6 +12,7 @@ providers:
 
 api:
   dashboard: true
+  insecure: true
 
 certificatesResolvers:
   myresolver:
@@ -18,3 +21,6 @@ certificatesResolvers:
       storage: "/letsencrypt/acme.json"
       httpChallenge:
         entryPoint: web
+
+log:
+  level: INFO
