@@ -18,7 +18,7 @@ services:
       - "traefik.docker.network=proxy"
       
       # Router HTTPS
-      - "traefik.http.routers.mysql-external.rule=Host(`bd-mysql.jvserver.com`)"
+      - "traefik.http.routers.mysql-external.rule=Host(`bdmysql.midoctor24h.com`)"
       - "traefik.http.routers.mysql-external.entrypoints=websecure"
       - "traefik.http.routers.mysql-external.tls=true"
       - "traefik.http.routers.mysql-external.tls.certresolver=myresolver"
