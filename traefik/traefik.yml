@@ -17,7 +17,7 @@ api:
 certificatesResolvers:
   myresolver:
     acme:
-      email: "webmaster@midoctor24h.com"
+      email: "test@mail.com"
       storage: "/letsencrypt/acme.json"
       httpChallenge:
         entryPoint: web
