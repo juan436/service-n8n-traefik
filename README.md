@@ -101,5 +101,5 @@ Este proyecto contiene una pila de Docker para publicar n8n en producci√≥n detr√
 - Si despliegas en Windows, los comandos mostrados en bloques bash pueden ejecutarse en PowerShell con sintaxis equivalente.
 
 ## Autor
-- Juan Villegas (`juancvillefer`)
+- Juan Villegas (`juancvillefer@gmail.com`)
 
